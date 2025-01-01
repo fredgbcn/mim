@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gafata">
+    <title>Quiz</title>
+</head>
+
+<body id="quiz" ontouchstart="">
+    <header>
+        <a href="../index.html"><img src="../images/logo2.png" alt="Logo-make-it-move-2" class="logo2"></a>
+        <nav id="menu">
+            <img src="../images/Vector1.png" alt="nav-bar-icon" class="img-menu">
+            <ul class="cacher">
+                <li><a href="../index.html">HOME</a></li>
+                <li><a href="../part1/part1.html">ANIMATION BASICS</a></li>
+                <li><a href="../part2/part2.html">ANIMATION STEP 2</a></li>
+                <li id="activepage"><a href="./quizz.html">QUIZ</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div id="menu-mobile">
+        <a href="../part2/part2.html"><img src="../images/left-arrow.png" alt="left-arrow" class="left-arrow"><p>STEP 2</p></a>
+        <a href="../index.html" id="image-nav-mobile"><img src="../images/logo.svg" ></a>
+        <a href="../index.html"><p>HOME</p><img src="../images/right-arrow.png" alt="right-arrow" class="right-arrow"></a>
+    </div>
+
+    <div id="app" class="quiz">
+        <div v-if="index < count">
+            <h1>QUIZ: Test your knowledge</h1>
+            <h3>{{ questions[index]['question'] }}</h3>
+            <label :for="key"
+                    v-for="reponse,key in questions[index]['choices']"
+                    :class= "{'libre' : choix == '', 'faux' : choix == key, 'bonneReponse' : key == questions[index]['correctanswer'] && choix != ''}"
+                >
+            <input type="radio"
+                :id="key"
+                :value="key"
+                class="input-radio"
+                @click= "repondu($event)"
+                :disabled = "choix != ''"
+            >
+                <p>{{reponse}}</p>
+            </label>
+            <div class="next">
+            <button class="button-next"
+                    v-show="choix !=''&& index < count-1"
+                    @click="nextQuestion"
+                    >Next</button>
+
+            <button class="button-finish-quiz"
+                    v-show="choix !='' && index == count -1"
+                    @click="showResult"
+                    >Results</button>
+            </div>
+        </div>
+        <div v-else class="endscreen">
+            <h1>{{result}} Here is your score!</h1>
+            <p>Good answers: {{goodResponses}}</p>
+            <p>Wrong answers: {{wrongResponses}}</p>
+            <button class="button-try-again" onclick="location.href='./quizz.html';">Try Again</button>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+    <script src="./app.js"></script>
+</body>
+</html>

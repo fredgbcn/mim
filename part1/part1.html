@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gafata">
+    <title>Basics of CSS Animation</title>
+</head>
+
+<body ontouchstart="">
+    <header>
+        <a href="../index.html"><img src="../images/logo2.png" alt="Logo-make-it-move-2" class="logo2"></a>
+        <nav id="menu">
+            <img src="../images/Vector1.png" alt="nav-bar-icon" class="img-menu">
+            <ul class="cacher">
+            <li><a href="../index.html">HOME</a></li>
+            <li id="activepage"><a href="../part1/part1.html">ANIMATION BASICS</a></li>
+            <li><a href="../part2/part2.html">ANIMATION STEP 2</a></li>
+            <li><a href="../Quizz/quizz.html">QUIZ</a></li>
+            </ul>
+        </nav>
+        
+    </header>
+    <div id="menu-mobile">
+        <a href="../index.html"><img src="../images/left-arrow.png" alt="left-arrow" class="left-arrow"><p>HOME</p></a>
+        <a href="../index.html" id="image-nav-mobile"><img src="../images/logo.svg" ></a>
+        <a href="../part2/part2.html"><p>STEP 2</p><img src="../images/right-arrow.png" alt="right-arrow" class="right-arrow"></a>
+
+    </div>
+    <div id="app">
+
+        <!-- 1ST ANIMATION -->
+        <div class="container-global-animation">
+            <h2>Basic animation to get the size of an element multipied</h2>
+
+            <div class="container-demo-pre">   
+                    <div class="container-demo">        
+                        <div class="btn" onselectstart="return false" oncontextmenu="return false" ondragstart="return false" onMouseOver="window.status='..message perso .. '; return true;">Click to see</div>
+                        <div class="ballgrowth"></div>
+                    </div>
+                    
+                    <div class="tabs" id="tabs_ballgrowth">
+                        <div class="tabs-triggers">
+                            <div class="tabs-trigger" v-for="(item, index) in ballgrowth" :class="[index === active ? 'tabs-trigger--active' : '']" @click="activate(index)">{{ ballgrowth [index] }}</div>
+                        </div>
+                        <div class="tabs-content" v-if="active === 0">
+                            <pre></br>
+
+    
+    .ballgrowth {
+        margin-top: 40%;
+        filter: blur(0.2rem);
+        transform: scale(0.1);
+        transition: transform 2000ms;
+        width: 40px;
+        height: 40px;
+        background: #b20a37;
+        margin-bottom: 1rem;
+        border-radius: 50%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .btn:active + .ball {
+        transform: scale(10);
+    }
+          
+                            </pre>
+                        </div>
+                        <div class="tabs-content" v-if="active === 1"><p>Here you'll find a growing ball.<br>
+                        <p>The transform property is applied to the button and the ball's div.<br>
+                        The scale value multiply the size of the object. The first value will strech the size horizontally, and the second vertically.<br>
+                        The transition property allows you to move from a state to another one and choose the timing you want.</p>
+                        </div>
+                    </div>
+            </div>
+            <p>Use<code>transform: scale();</code></p>       
+        </div>
+
+        <!-- 2ND ANIMATION -->
+        <div class="container-global-animation">
+            <h2>Basic animation to get an element moving in a direction</h2>
+
+            <div class="container-demo-pre">   
+                    <div class="container-demo">        
+                        <div class="btn" onselectstart="return false" oncontextmenu="return false" ondragstart="return false" onMouseOver="window.status='..message perso .. '; return true;">Click to see</div>
+                        <div class="ballmove"></div>
+                    </div>
+                    
+                    <div class="tabs" id="tabs_ballmove">
+                        <div class="tabs-triggers">
+                            <div class="tabs-trigger" v-for="(item, index) in ballmove" :class="[index === active ? 'tabs-trigger--active' : '']" @click="activate(index)">{{ ballmove [index] }}</div>
+                        </div>
+                        <div class="tabs-content" v-if="active === 0">
+                            <pre></br>
+
+    .ballmove {
+        width: 50px;
+        height: 50px;
+        background: #b20a37;
+        margin-bottom: 1rem;
+        border-radius: 50%;
+        transition: bottom 1s, transform 1s ease-in-out;
+    }
+
+    .btn:active + .ballmove {
+        transform: translate(0, 300%);
+    }
+                
+                </pre>
+                        </div>
+                        <div class="tabs-content" v-if="active === 1"><p>This is the way you can move an object in the direction you want. You can add an acceleration/deceleration with the ease-in-out property.<br></p>
+                        <p>The first value moves the object to the right (or to the left with a negative value), and the second moves it down (up with a negative value).<br>
+                        An object using transform will move from its original position without causing other elements to flow around it (they will remain fixed).</p>
+                        </div>
+                    </div>
+            </div>
+            <p>Use <code>transform: translate();</code></p>       
+        </div>
+
+
+        <!-- 3RD ANIMATION -->
+        <div class="container-global-animation">
+            <h2>Basic animation to get a shape rotating</h2>
+
+            <div class="container-demo-pre">   
+                    <div class="container-demo">        
+                        <div class="btn" onselectstart="return false" oncontextmenu="return false" ondragstart="return false" onMouseOver="window.status='..message perso .. '; return true;">Click to see</div>
+                        <div class="rotatesquare"></div>
+                    </div>
+
+                    <div class="tabs" id="tabs_rotate">
+                        <div class="tabs-triggers">
+                            <div class="tabs-trigger" v-for="(item, index) in rotate" :class="[index === active ? 'tabs-trigger--active' : '']" @click="activate(index)">{{ rotate [index] }}</div>
+                        </div>
+                        <div class="tabs-content" v-if="active === 0">
+                
+                <pre></br>
+
+    .rotatesquare {
+        border: 1px solid turquoise;
+        width: 50px;
+        height: 50px;
+        background: teal;
+        margin-bottom: 1rem;
+        transition: transform 2s ease-in-out;
+        margin-top: 40%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .btn:active + .rotatesquare {
+        transform: rotate(360deg);
+    }
+                
+                </pre>
+                        </div>
+                        <div class="tabs-content" v-if="active === 1"><p>Here you'll manage to rotate the object using the rotate() property with the deg unit for the degree of the rotation.<br></p>
+                        <p>A positive value will rotate the element clockwise, and a negative value will rotate it in the opposite direction<br></p>
+                        <p>You can also use rotateX(), rotateY(), or rotateZ() to rotate the object on a different axis.</p></div>
+                    </div>
+            </div>
+            <p>Use <code>transform: rotate();</code></p>       
+        </div>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+        <script src="../app.js"></script>
+        <script type="text/javascript">
+            new Vue({
+                el: "#tabs_ballgrowth",
+                data: {
+                    active: 0,
+                    ballgrowth: [
+                        "Code", 
+                        "Explanation"
+                    ]
+                },
+                methods: {
+                    activate(index) {
+                        this.active = index;
+                    }
+                }
+            });
+
+            new Vue({
+                el: "#tabs_ballmove",
+                data: {
+                    active: 0,
+                    ballmove: [
+                        "Code", 
+                        "Explanation"
+                    ]
+                },
+                methods: {
+                    activate(index) {
+                        this.active = index;
+                    }
+                }
+            });
+
+            new Vue({
+                el: "#tabs_rotate",
+                data: {
+                    active: 0,
+                    rotate: [
+                        "Code", 
+                        "Explanation"
+                    ]
+                },
+                methods: {
+                    activate(index) {
+                        this.active = index;
+                    }
+                }
+            });
+        </script>
+    </div>
+
+</body>
+</html>
